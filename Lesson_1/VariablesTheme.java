@@ -98,32 +98,33 @@ public class VariablesTheme {
 		int srcNum = 123;
 		int hundreds = srcNum / 100;
 		int dozens = (srcNum % 100) / 10;
-		int units = srcNum % 10;
+		int ones = srcNum % 10;
 		System.out.println("Число " + srcNum + "содержит:");
 		System.out.println(hundreds + " сотню(-ен)");
 		System.out.println(dozens + " десяток(-ов)");
-		System.out.println(units + " единиц(-ы)");
+		System.out.println(ones + " единиц(-ы)");
 
 		System.out.println("\n8.Вывод на консоль ASCII-арт Дюка\n");
-		char forwSlash = '/'; 
+		char slash = '/'; 
 		char backSlash = '\\';
-		char underscr = '_';
+		char underscore = '_';
 		char opParenthesis = '(';
 		char clParenthesis = ')';
 		char space = ' ';
-		System.out.println("" + space + space + space +space + forwSlash + backSlash);
-		System.out.println("" + space + space + space + forwSlash + space + space + backSlash );
-		System.out.println("" + space + space + forwSlash + underscr + opParenthesis + space + clParenthesis + backSlash);
-		System.out.println("" + space + forwSlash + space + space + space + space + space + space + backSlash);
-		System.out.println("" + forwSlash + underscr + underscr + underscr + underscr + forwSlash + backSlash + underscr + underscr + backSlash);
+		System.out.println("" + space + space + space +space + slash + backSlash);
+		System.out.println("" + space + space + space + slash + space + space + backSlash );
+		System.out.println("" + space + space + slash + underscore + opParenthesis + space + clParenthesis + backSlash);
+		System.out.println("" + space + slash + space + space + space + space + space + space + backSlash);
+		System.out.println("" + slash + underscore + underscore + underscore + underscore +
+				slash + backSlash + underscore + underscore + backSlash);
 
 		System.out.println("\n9.Произведение и сумма цифр числа\n");
 		srcNum = 345;
 		hundreds = srcNum / 100;
 		dozens = (srcNum % 100) / 10;
-		units = srcNum % 10;
-		System.out.println("сумма цифр числа " + srcNum + " = " + (hundreds + dozens + units));
-		System.out.println("произведение цифр числа " + srcNum + " = " + (hundreds * dozens * units));
+		ones = srcNum % 10;
+		System.out.println("сумма цифр числа " + srcNum + " = " + (hundreds + dozens + ones));
+		System.out.println("произведение цифр числа " + srcNum + " = " + (hundreds * dozens * ones));
 
 		System.out.println("\n10.Преобразование секунд\n");
 		int amountSec = 86399;
