@@ -44,18 +44,17 @@ public class IfElseStatementTheme {
 		int randomNum = -100 + (int) (Math.random() * 100);
 		System.out.println("Исходное число: " + randomNum);
 		if(randomNum == 0) {
-			System.out.println(randomNum + " равно нулю");
-		} else if(randomNum < 0) {
-			if((randomNum % 2) == 0){
-				System.out.println(randomNum + " это число четное отрицательное");
-			} else {
-				System.out.println(randomNum + " это число нечетное отрицательное");
-			}
+			System.out.println("число " + randomNum + " равно нулю");
 		} else {
 			if((randomNum % 2) == 0){
-				System.out.println(randomNum + " это число четное положительное");
+				System.out.println(randomNum + " это число четное ");
 			} else {
-				System.out.println(randomNum + " это число нечетное положительное");
+				System.out.println(randomNum + " это число нечетное");
+			} 
+			if(randomNum < 0) {
+				System.out.println("и отрицательное");
+			} else {
+				System.out.println("и положительное");
 			}
 		}
 
@@ -101,14 +100,12 @@ public class IfElseStatementTheme {
 		System.out.println("Сумма вклада: " + depositAmount);
 		if(depositAmount < 100000) {
 			percent = 0.05;
-			depositAmount = depositAmount + (depositAmount * percent);
 		} else if((100000 <= depositAmount) && (depositAmount <= 300000)) {
 			percent = 0.07;
-			depositAmount = depositAmount + (depositAmount * percent);
 		} else {
 			percent = 0.1;
-			depositAmount = depositAmount + (depositAmount * percent);
 		}
+		depositAmount += (depositAmount * percent);
 		System.out.println("Начислено " +((int) (percent * 100)) + "%  \nИтоговая сумма с % равна " + depositAmount);
 
 		System.out.println("\n7.Определение оценки по предметам\n");
@@ -149,7 +146,7 @@ public class IfElseStatementTheme {
 		} else if(yearsProfit > 0){
 			System.out.println("Прибыль за год: +" + yearsProfit);
 		} else {
-			System.out.println("Прибыль за год: +" + yearsProfit);
+			System.out.println("Прибыль за год: " + yearsProfit);
 		}
 
 		System.out.println("\n9.Подсчет количества банкнот\n");

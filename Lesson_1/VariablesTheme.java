@@ -112,7 +112,7 @@ public class VariablesTheme {
 		char clParenthesis = ')';
 		char space = ' ';
 		System.out.println("" + space + space + space +space + slash + backSlash);
-		System.out.println("" + space + space + space + slash + space + space + backSlash );
+		System.out.println("" + space + space + space + slash + space + space + backlash );
 		System.out.println("" + space + space + slash + underscore + opParenthesis + space + clParenthesis + backSlash);
 		System.out.println("" + space + slash + space + space + space + space + space + space + backSlash);
 		System.out.println("" + slash + underscore + underscore + underscore + underscore +
