@@ -140,10 +140,8 @@ public class IfElseStatementTheme {
 		double premisesCost = 5000;
 		double goodsCost = 9000;
 		double goodsSold = 13000;
-		double yearsProfit = (goodsSold - (premisesCost + goodsCost)) * 12;
-		if(yearsProfit < 0) {
-			System.out.println("Прибыль за год: " + yearsProfit);
-		} else if(yearsProfit > 0){
+		double yearsProfit = 12 * (goodsSold - (premisesCost + goodsCost));
+		if(yearsProfit > 0) {
 			System.out.println("Прибыль за год: +" + yearsProfit);
 		} else {
 			System.out.println("Прибыль за год: " + yearsProfit);
