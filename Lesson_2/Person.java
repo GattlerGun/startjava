@@ -14,12 +14,12 @@ public class Person {
 		System.out.println("sitting");
 	}
 
-	boolean Run() {
-		return true
+	boolean run() {
+		return true;
 	}
 
 	String say() {
-		return "saying"
+		return "saying";
 	}
 
 	void learnJava() {
