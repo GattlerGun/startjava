@@ -14,7 +14,7 @@ public class Wolf {
 		this.sex = sex;
 	}
 
-		public String getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -22,7 +22,7 @@ public class Wolf {
 		this.name = name;
 	}
 
-		public double getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
@@ -30,7 +30,7 @@ public class Wolf {
 		this.weight = weight;
 	}
 
-		public int getAge() {
+	public int getAge() {
 		return age;
 	}
 
