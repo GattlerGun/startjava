@@ -1,9 +1,9 @@
 public class Calculator {
 	
-	int num1;
-	int num2;
-	int result;
-	char sign;
+	private int num1;
+	private int num2;
+	private int result;
+	private char sign;
 
 	public int getNum1() {
 		return num1;
