@@ -19,6 +19,7 @@ public class Calculator {
 	public int calculate() {
 		if((num1 < 0) || (num2 < 0)) {
 			System.out.println("только положительные числа!!!");
+			return 0;
 		} else {
 			switch(sign) {
 				case '+':
@@ -42,6 +43,5 @@ public class Calculator {
 					return 0;
 			}
 		}
-		return 0;
 	}
 }
