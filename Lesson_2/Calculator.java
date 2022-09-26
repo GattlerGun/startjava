@@ -5,7 +5,7 @@ public class Calculator {
 	private char sign;
 
 	public void setNum1(int num1) {
-			this.num1 = num1;
+		this.num1 = num1;
 	}
 
 	public void setNum2(int num2) {
@@ -16,7 +16,7 @@ public class Calculator {
 		this.sign = sign;
 	}
 
-	public int calculate(char sign, int num1, int num2) {
+	public int calculate() {
 		if((num1 < 0) || (num2 < 0)) {
 			System.out.println("только положительные числа!!!");
 		} else {
@@ -38,10 +38,10 @@ public class Calculator {
 				case '%':
 					return num1 % num2;
 				default:
-					 System.out.println("Такой операции в калькуляторе не реализовано");
-					 break;
+					System.out.println("Такой операции в калькуляторе не реализовано");
+					return 0;
 			}
 		}
-		return sign;
+		return 0;
 	}
 }
