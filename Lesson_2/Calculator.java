@@ -20,28 +20,27 @@ public class Calculator {
 		if((num1 < 0) || (num2 < 0)) {
 			System.out.println("только положительные числа!!!");
 			return 0;
-		} else {
-			switch(sign) {
-				case '+':
-					return num1 + num2;
-				case '-':
-					return num1 - num2;
-				case '*':
-					return num1 * num2;
-				case '/':
-					return num1 / num2;
-				case '^':
-					int result = 1;
-					for(int i = 0; i < num2; i++) {
-						result *= num1;
-					}
-					return result;
-				case '%':
-					return num1 % num2;
-				default:
-					System.out.println("Такой операции в калькуляторе не реализовано");
-					return 0;
-			}
+		}
+		switch(sign) {
+			case '+':
+				return num1 + num2;
+			case '-':
+				return num1 - num2;
+			case '*':
+				return num1 * num2;
+			case '/':
+				return num1 / num2;
+			case '^':
+				int result = 1;
+				for(int i = 0; i < num2; i++) {
+					result *= num1;
+				}
+				return result;
+			case '%':
+				return num1 % num2;
+			default:
+				System.out.println("Такой операции в калькуляторе не реализовано");
+				return 0;
 		}
 	}
 }
