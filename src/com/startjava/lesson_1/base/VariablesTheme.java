@@ -11,7 +11,7 @@ public class VariablesTheme {
 		float maxGhz = 2.93f; 
 		double minGhz = 2.92;
 		String namePC = "PC1";
-		char ch = 'А';
+		char ch = '\u0410';
 		boolean itsPC = true;
 		System.out.println("Количество оперативной памяти = " + ram);
 		System.out.println("Тип системы х" + typeSys);
