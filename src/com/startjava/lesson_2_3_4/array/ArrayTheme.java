@@ -5,22 +5,21 @@ import java.util.Random;
 public class ArrayTheme {
 
     public static void main(String[] args) {
-        int length;
-        System.out.println("1.Реверс значений массива\n");
+        System.out.println("1.Р РµРІРµСЂСЃ Р·РЅР°С‡РµРЅРёР№ РјР°СЃСЃРёРІР°\n");
         int[] intArr1 = {2, 5, 3, 1, 4, 7, 6};
-        System.out.print("Заданный массив: ");
+        System.out.print("Р—Р°РґР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ: ");
         printIntArr(intArr1);
-        length = intArr1.length;
-        for(int i = 0; i < length / 2; i++) {
-            int number = intArr1[i];
-            intArr1[i] = intArr1[length - 1 - i];
-            intArr1[length - 1 - i] = number;
+        int length = intArr1.length;
+        for(int i = 0; i < length; i++) {
+            int tmp = intArr1[i];
+            --length;
+            intArr1[i] = intArr1[length];
+            intArr1[length] = tmp;
         }
-        System.out.print("\nМассив после реверса: ");
+        System.out.print("\nРњР°СЃСЃРёРІ РїРѕСЃР»Рµ СЂРµРІРµСЂСЃР°: ");
         printIntArr(intArr1);
 
-
-        System.out.println("\n\n2.Вывод произведения элементов массива\n");
+        System.out.println("\n\n2.Р’С‹РІРѕРґ РїСЂРѕРёР·РІРµРґРµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°\n");
         int[] intArr2 = new int[10];
         length = intArr2.length;
         for(int i = 0; i < length; i++) {
@@ -29,47 +28,44 @@ public class ArrayTheme {
         int result = 1;
         for(int i = 1; i < length - 1; i++) {
             result *= intArr2[i];
+            System.out.print(intArr2[i] + ((i < length - 2) ? " * " : " = " + result));
         }
-        for(int i = 1; i < length - 1; i++) {
-            System.out.print(intArr2[i]);
-            System.out.print((i < length - 2) ? " * " : " = " + result);
-        }
-        System.out.println("\nЦифра под индексом 0: " + intArr2[0] + ", Цифра под индексом 9: " + intArr2[9]);
+        System.out.println("\nР¦РёС„СЂР° РїРѕРґ РёРЅРґРµРєСЃРѕРј 0: " + intArr2[0] + ", Р¦РёС„СЂР° РїРѕРґ РёРЅРґРµРєСЃРѕРј 9: " + intArr2[9]);
 
-        System.out.println("\n3.Удаление элементов массива\n");
+        System.out.println("\n3.РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°\n");
         double[] doubleArr = new double[15];
         length = doubleArr.length;
         for(int i = 0; i < length; i++) {
             doubleArr[i] = Math.random();
         }
-        int avrgIndex = length / 2;
-        System.out.println("Исходный массив:");
+        double avrgNum = doubleArr[length / 2];
+        System.out.println("РСЃС…РѕРґРЅС‹Р№ РјР°СЃСЃРёРІ:");
         for(int i = 0; i < length; i++) {
             System.out.printf("%7.3f", doubleArr[i]);
-            if(i == avrgIndex) {
+            if(i == length/2) {
                 System.out.println();
             }
 
         }
         for(int i = 0; i < length; i++) {
-            if(doubleArr[i] < doubleArr[avrgIndex]) {
-                doubleArr[i] = 0.000;
+            if(doubleArr[i] < avrgNum) {
+                doubleArr[i] = 0.0;
             }
         }
         int zeroAmount = 0;
-        System.out.println("\nИзменненый массив:");
+        System.out.println("\nРР·РјРµРЅРЅРµРЅС‹Р№ РјР°СЃСЃРёРІ:");
         for(int i = 0; i < length; i++) {
             System.out.printf("%7.3f", doubleArr[i]);
-            if(i == avrgIndex) {
+            if(i == length/2) {
                 System.out.println();
             }
             if(doubleArr[i] == 0) {
                 zeroAmount++;
             }
         }
-        System.out.println("\nКоличество обнуленных ячеек: " + zeroAmount);
+        System.out.println("\nРљРѕР»РёС‡РµСЃС‚РІРѕ РѕР±РЅСѓР»РµРЅРЅС‹С… СЏС‡РµРµРє: " + zeroAmount);
 
-        System.out.println("\n4.Вывод элементов массива лесенкой в обратном порядке\n");
+        System.out.println("\n4.Р’С‹РІРѕРґ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° Р»РµСЃРµРЅРєРѕР№ РІ РѕР±СЂР°С‚РЅРѕРј РїРѕСЂСЏРґРєРµ\n");
         char[] charArr = new char[26];
         int decLetter = 65;
         length = charArr.length;
@@ -94,7 +90,7 @@ public class ArrayTheme {
             numChar++;
         }
 
-        System.out.println("\n5.Генерация уникальных чисел\n");
+        System.out.println("\n5.Р“РµРЅРµСЂР°С†РёСЏ СѓРЅРёРєР°Р»СЊРЅС‹С… С‡РёСЃРµР»\n");
         int[] intArr3 = new int[30];
         boolean alreadyThere;
         Random rand = new Random();
@@ -137,7 +133,7 @@ public class ArrayTheme {
             }
         }
 
-        System.out.println("\n\n6.Сдвиг элементов массива\n");
+        System.out.println("\n\n6.РЎРґРІРёРі СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°\n");
         String[] inputStringArr = {" ", "AA", "", "BBB", "CC",
                 "D", " ", "E", "FF", "G", ""};
         length = 0;
@@ -169,9 +165,9 @@ public class ArrayTheme {
                 indexLength++;
             }
         }
-        System.out.print("Изначальный массив: ");
+        System.out.print("РР·РЅР°С‡Р°Р»СЊРЅС‹Р№ РјР°СЃСЃРёРІ: ");
         printStringArr(inputStringArr);
-        System.out.print("\nМассив без пробелов: " );
+        System.out.print("\nРњР°СЃСЃРёРІ Р±РµР· РїСЂРѕР±РµР»РѕРІ: " );
         printStringArr(outStringArr);
     }
 
