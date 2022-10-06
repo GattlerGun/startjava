@@ -12,8 +12,7 @@ public class ArrayTheme {
         int length = intArr1.length;
         for(int i = 0; i < length; i++) {
             int tmp = intArr1[i];
-            --length;
-            intArr1[i] = intArr1[length];
+            intArr1[i] = intArr1[--length];
             intArr1[length] = tmp;
         }
         System.out.print("\nМассив после реверса: ");
@@ -40,54 +39,33 @@ public class ArrayTheme {
         }
         double avrgNum = doubleArr[length / 2];
         System.out.println("Исходный массив:");
-        for(int i = 0; i < length; i++) {
-            System.out.printf("%7.3f", doubleArr[i]);
-            if(i == length/2) {
-                System.out.println();
-            }
-
-        }
+        printDoubleArr(doubleArr, length);
+        int zeroAmount = 0;
         for(int i = 0; i < length; i++) {
             if(doubleArr[i] < avrgNum) {
                 doubleArr[i] = 0.0;
-            }
-        }
-        int zeroAmount = 0;
-        System.out.println("\nИзменненый массив:");
-        for(int i = 0; i < length; i++) {
-            System.out.printf("%7.3f", doubleArr[i]);
-            if(i == length/2) {
-                System.out.println();
-            }
-            if(doubleArr[i] == 0) {
                 zeroAmount++;
             }
         }
+        System.out.println("\nИзмененный массив:");
+        printDoubleArr(doubleArr, length);
         System.out.println("\nКоличество обнуленных ячеек: " + zeroAmount);
 
         System.out.println("\n4.Вывод элементов массива лесенкой в обратном порядке\n");
-        char[] charArr = new char[26];
-        int decLetter = 65;
-        length = charArr.length;
+        char[] engAlphabetArr = new char[26];
+        length = engAlphabetArr.length;
         for(int i = 0; i < length; i++) {
-            charArr[i] = (char)(decLetter + i);
+            engAlphabetArr[i] = (char) ('A' + i);
         }
-        for(int i = 0; i < length / 2; i++) {
-            char ch = charArr[i];
-            charArr[i] = charArr[length - 1 - i];
-            charArr[length - 1 - i] = ch;
-        }
-        int charCount = 0;
-        int numChar = 0;
-        while(charCount < charArr.length) {
-            int j = 0;
-            while(j <= numChar) {
-                System.out.print(charArr[j]);
-                j++;
+        int numChar = length - 1;
+        for(int i = 0; i < length; i++) {
+            int j = length - 1;
+            while(j >= numChar) {
+                System.out.print(engAlphabetArr[j]);
+                j--;
             }
             System.out.println();
-            charCount++;
-            numChar++;
+            numChar--;
         }
 
         System.out.println("\n5.Генерация уникальных чисел\n");
@@ -180,6 +158,15 @@ public class ArrayTheme {
     public  static  void printStringArr(String[] array) {
         for(String a : array) {
             System.out.print(a + "|");
+        }
+    }
+
+    public static void printDoubleArr(double[] array, int length) {
+        for(int i = 0; i < length; i++) {
+            System.out.printf("%7.3f", array[i]);
+            if(i == length / 2) {
+                System.out.println();
+            }
         }
     }
 }
