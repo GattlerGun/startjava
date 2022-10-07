@@ -70,33 +70,33 @@ public class ArrayTheme {
 
         System.out.println("\n5.Генерация уникальных чисел\n");
         int[] intArr3 = new int[30];
-        boolean alreadyThere;
+        boolean unique;
         Random rand = new Random();
         length = intArr3.length;
         for(int i = 0; i < length;) {
-            alreadyThere = false;
+            unique = false;
             int randomNumber = 60 + rand.nextInt(40);
             for(int j = 0; j < i; j++) {
                 if (intArr3[j] == randomNumber) {
-                    alreadyThere = true;
+                    unique = true;
                     break;
                 }
             }
-            if(!alreadyThere) {
+            if(!unique) {
                 intArr3[i] = randomNumber;
                 i++;
             }
         }
-        boolean sorted = false;
-        while(!sorted) {
-            int temp;
-            sorted = true;
+        unique = false;
+        while(!unique) {
+            unique = true;
             for(int i = 0; i < length - 1; i++) {
                 if(intArr3[i] > intArr3[i + 1]) {
+                    int temp;
                     temp = intArr3[i];
                     intArr3[i] = intArr3[i + 1];
                     intArr3[i + 1] = temp;
-                    sorted = false;
+                    unique = false;
                 }
             }
         }
