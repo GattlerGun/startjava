@@ -33,11 +33,7 @@ public class Calculator {
 			case '/':
 				return num1 / num2;
 			case '^':
-				int result = 1;
-				for(int i = 0; i < num2; i++) {
-					result *= num1;
-				}
-				return result;
+				return (int) Math.pow(num1, num2);
 			case '%':
 				return num1 % num2;
 			default:

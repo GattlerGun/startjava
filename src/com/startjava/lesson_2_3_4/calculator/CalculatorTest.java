@@ -10,20 +10,17 @@ public class CalculatorTest {
 		Calculator calc = new Calculator();
 		do {
 			if(userAnswer.equals("yes")) {
-				System.out.println("Введите первое число: ");
-				int num1 = scan.nextInt();
-				calc.setNum1(num1);
-				System.out.println("Введите второе число: ");
-				int num2 = scan.nextInt();
-				calc.setNum2(num2);
-				System.out.println("Введите математическую операцию(+, -, /, *, ^, %):");
-				char sign = scan.next().charAt(0);
-				calc.setSign(sign);
-				int result = calc.calculate();
-				System.out.println(num1 + " " + sign + " " + num2 + " = " + result);
+				System.out.println("Доступные операции (+, -, /, *, ^, %)");
+				System.out.print("Введите математическое выражение типа (a + b): ");
+				String mathExp = scan.nextLine();
+				String[] mathExpArr = mathExp.split(" ");
+				calc.setNum1(Integer.parseInt(mathExpArr[0]));
+				calc.setSign(mathExpArr[1].charAt(0));
+				calc.setNum2(Integer.parseInt(mathExpArr[2]));
+				System.out.print(" = " + calc.calculate());
 			}
-				System.out.println("Хотите продолжить вычисления? [yes/no]:");
-				userAnswer = scan.next();
+				System.out.println("\nХотите продолжить вычисления? [yes/no]:");
+				userAnswer = scan.nextLine();
 		} while(!userAnswer.equals("no"));
 		scan.close();
 	}
