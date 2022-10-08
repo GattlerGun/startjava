@@ -30,16 +30,13 @@ public class CalculatorTest {
 			mathExp = (scan.nextLine());
 			matcher = pattern.matcher(mathExp);
 			if(!matcher.matches()) {
-				System.out.println("Неверный формат: только целые положитеьные числа!");
+				System.out.println("Неверный формат: только целые положительные числа!");
 			}
 		} while (!matcher.matches());
 		String[] mathExpArr = mathExp.split(" ");
 		int num1 = (Integer.parseInt(mathExpArr[0]));
 		char sign = (mathExpArr[1].charAt(0));
 		int num2 = (Integer.parseInt(mathExpArr[2]));
-		if ((num1 < 0) || (num2 < 0)) {
-			System.out.println("только положительные числа!!!");
-		}
 		return switch (sign) {
 			case '+' -> num1 + num2;
 			case '-' -> num1 - num2;
