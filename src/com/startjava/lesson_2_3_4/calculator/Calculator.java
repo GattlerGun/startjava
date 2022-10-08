@@ -2,9 +2,10 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 	
-	private int num1;
-	private int num2;
-	private char sign;
+	private static int num1;
+	private static int num2;
+	private static String mathExp;
+	private static char sign;
 
 	public void setNum1(int num1) {
 		this.num1 = num1;
@@ -18,27 +19,19 @@ public class Calculator {
 		this.sign = sign;
 	}
 
-	public int calculate() {
-		if((num1 < 0) || (num2 < 0)) {
-			System.out.println("только положительные числа!!!");
-			return 0;
-		}
-		switch(sign) {
-			case '+':
-				return num1 + num2;
-			case '-':
-				return num1 - num2;
-			case '*':
-				return num1 * num2;
-			case '/':
-				return num1 / num2;
-			case '^':
-				return (int) Math.pow(num1, num2);
-			case '%':
-				return num1 % num2;
-			default:
-				System.out.println("Такой операции в калькуляторе не реализовано");
-				return 0;
-		}
+	public static int calculate(String mathExp) {
+		String[] mathExpArr = mathExp.split(" ");
+		num1 = (Integer.parseInt(mathExpArr[0]));
+		sign = (mathExpArr[1].charAt(0));
+		num2 = (Integer.parseInt(mathExpArr[2]));
+		return switch (sign) {
+			case '+' -> num1 + num2;
+			case '-' -> num1 - num2;
+			case '*' -> num1 * num2;
+			case '/' -> num1 / num2;
+			case '^' -> (int) Math.pow(num1, num2);
+			case '%' -> num1 % num2;
+			default -> 0;
+		};
 	}
 }

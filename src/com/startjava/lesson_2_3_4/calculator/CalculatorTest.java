@@ -13,38 +13,23 @@ public class CalculatorTest {
 		String userAnswer = "yes";
 		do {
 			if(userAnswer.equals("yes")) {
-				System.out.println("Доступные операции (+, -, /, *, ^, %)");
-				System.out.print(" = " + calculate());
+
+				Matcher matcher;
+				String mathExp;
+				do {
+					System.out.println("Доступные операции (+, -, /, *, ^, %)");
+					System.out.print("Введите математическое выражение типа (a + b): ");
+					mathExp = (scan.nextLine());
+					matcher = pattern.matcher(mathExp);
+					if(!matcher.matches()) {
+						System.out.println("Неверный формат: только целые положительные числа!");
+					}
+				} while (!matcher.matches());
+				System.out.print(" = " + Calculator.calculate(mathExp));
 			}
 			System.out.println("\nХотите продолжить вычисления? [yes/no]:");
 			userAnswer = scan.nextLine();
 		} while(!userAnswer.equals("no"));
 		scan.close();
-	}
-
-	public static int calculate() {
-		Matcher matcher;
-		String mathExp;
-		do {
-			System.out.print("Введите математическое выражение типа (a + b): ");
-			mathExp = (scan.nextLine());
-			matcher = pattern.matcher(mathExp);
-			if(!matcher.matches()) {
-				System.out.println("Неверный формат: только целые положительные числа!");
-			}
-		} while (!matcher.matches());
-		String[] mathExpArr = mathExp.split(" ");
-		int num1 = (Integer.parseInt(mathExpArr[0]));
-		char sign = (mathExpArr[1].charAt(0));
-		int num2 = (Integer.parseInt(mathExpArr[2]));
-		return switch (sign) {
-			case '+' -> num1 + num2;
-			case '-' -> num1 - num2;
-			case '*' -> num1 * num2;
-			case '/' -> num1 / num2;
-			case '^' -> (int) Math.pow(num1, num2);
-			case '%' -> num1 % num2;
-			default -> 0;
-			};
 	}
 }
