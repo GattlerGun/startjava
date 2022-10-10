@@ -34,13 +34,13 @@ public class Calculator {
 				System.out.println("Неверный формат: только целые положительные числа!");
 				System.out.println("Доступные операции (+, -, /, *, ^, %)");
 				System.out.print("Введите математическое выражение типа (a + b): ");
-				mathExp = (scan.nextLine());
+				mathExp = scan.nextLine();
 			}
-		} while (!matcher.matches());
+		} while(!matcher.matches());
 		String[] mathExpArr = mathExp.split(" ");
-		num1 = (Integer.parseInt(mathExpArr[0]));
-		sign = (mathExpArr[1].charAt(0));
-		num2 = (Integer.parseInt(mathExpArr[2]));
+		num1 = Integer.parseInt(mathExpArr[0]);
+		sign = mathExpArr[1].charAt(0);
+		num2 = Integer.parseInt(mathExpArr[2]);
 		return switch (sign) {
 			case '+' -> num1 + num2;
 			case '-' -> num1 - num2;
