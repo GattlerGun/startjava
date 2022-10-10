@@ -25,7 +25,6 @@ public class Calculator {
 		this.sign = sign;
 	}
 
-
 	public static int calculate(String mathExp) {
 		Matcher matcher;
 		do {
