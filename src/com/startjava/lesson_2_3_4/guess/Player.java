@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class Player {
 
 	private final String name;
-	private int number;
-	private final int[] numberArray = new int[10];
+	private int attempts = 0;
+	private final int[] numbers = new int[10];
 
 	public Player(String name) {
 		this.name = name;
@@ -16,26 +16,28 @@ public class Player {
 		return name;
 	}
 
+	public int getAttempts() {
+		return attempts;
+	}
+
+	public void setAttempts(int attempts) {
+		this.attempts = attempts;
+	}
+
 	public int getNumber() {
-		return number;
+		return numbers[attempts];
 	}
 
-	public void setNumberArray(int number) {
-		for(int i = 0; i < numberArray.length; i++) {
-			this.number = number;
-			if(numberArray[i] == 0) {
-				numberArray[i] = number;
-				break;
-			}
-		}
+	public void addNumbers(int number) {
+		numbers[attempts] = number;
 	}
 
-	public void getIntroducedNumber(int length) {
-		int[] numbersArrayCopy = Arrays.copyOf(numberArray, length);
-		System.out.println("Игрок " + name + " назвал числа:\n" + Arrays.toString(numbersArrayCopy));
+	public int[] getEnteredNumbers() {
+		return Arrays.copyOf(numbers, attempts);
 	}
 
-	public void zeroArray(int length) {
-		Arrays.fill(numberArray,0, length, 0);
+	public void resetArray(int length) {
+		Arrays.fill(numbers,0, length, 0);
+		attempts = 0;
 	}
 }
