@@ -25,11 +25,11 @@ public class Player {
 	}
 
 	public int getNumber() {
-		return numbers[attempts];
+		return numbers[attempts - 1];
 	}
 
 	public void addNumber(int number) {
-		numbers[attempts] = number;
+		numbers[attempts - 1] = number;
 	}
 
 	public int[] getEnteredNumbers() {
