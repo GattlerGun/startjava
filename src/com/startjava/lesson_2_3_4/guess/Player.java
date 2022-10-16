@@ -28,15 +28,15 @@ public class Player {
 		return numbers[attempts];
 	}
 
-	public void addNumbers(int number) {
+	public void addNumber(int number) {
 		numbers[attempts] = number;
 	}
 
 	public int[] getEnteredNumbers() {
-		return Arrays.copyOf(numbers, attempts + 1);
+		return Arrays.copyOf(numbers, attempts);
 	}
 
-	public void resetArrayAndAttempts() {
+	public void reset() {
 		Arrays.fill(numbers, 0, attempts, 0);
 		attempts = 0;
 	}
