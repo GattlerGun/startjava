@@ -22,8 +22,7 @@ public class GuessNumber {
 			if(isWin(player1) || isWin(player2)) {
 				break;
 			}
-			if(!checkAttempts(player2)) {
-				System.out.println("Увы, вы не смогли угадать число " + hiddenNumber);
+			if(loseGame()) {
 				break;
 			}
 		} while(true);
@@ -84,5 +83,12 @@ public class GuessNumber {
 			}
 		}
 		System.out.println();
+	}
+
+	private boolean loseGame() {
+		if(!checkAttempts(player2)) {
+			System.out.println("Увы, вы не смогли угадать число " + hiddenNumber);
+			return true;
+		} return false;
 	}
 }
