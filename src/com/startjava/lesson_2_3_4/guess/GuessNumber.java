@@ -7,7 +7,7 @@ public class GuessNumber {
 	private final Scanner scan = new Scanner(System.in);
 	private final Player player1;
 	private final Player player2;
-	private int hiddenNum;
+	private int hiddenNumber;
 
 	public GuessNumber(Player player1, Player player2) {
 		this.player1 = player1;
@@ -17,20 +17,30 @@ public class GuessNumber {
 	public void start() {
 		System.out.println("\nИгра угадай число в интервале (0,100]\n");
 		System.out.println("У каждого игрока по 10 попыток");
-		hiddenNum = 1 + (int) (Math.random() * 100);
+		hiddenNumber = 1 + (int) (Math.random() * 100);
 		do {
-			if(isWin(player1)) {
+			if(isWin(player1) || isWin(player2)) {
 				break;
 			}
-			if(isWin(player2)) {
-				break;
-			} else if(player2.getAttempts() == 10){
-				System.out.println("Увы, вы не смогли угадать число " + hiddenNum);
+			if(!checkAttempts(player2)) {
+				System.out.println("Увы, вы не смогли угадать число " + hiddenNumber);
 				break;
 			}
 		} while(true);
 		player1.reset();
 		player2.reset();
+	}
+
+	private boolean isWin(Player player) {
+		inputNumber(player);
+		if(checkAttempts(player)) {
+			if(checkNumber(player.getNumber())) {
+				outputWinMessage(player);
+				return true;
+			}
+		} else {
+			System.out.println("У " + player.getName() + " закончились попытки");
+		} return false;
 	}
 
 	private void inputNumber(Player player) {
@@ -39,24 +49,30 @@ public class GuessNumber {
 		player.addNumber(scan.nextInt());
 	}
 
-	private boolean checkNumber(Player player) {
-		if(player.getNumber() == hiddenNum) {
+	private boolean checkAttempts(Player player) {
+		if(player.getAttempts() == 10) {
+			return false;
+		} return player.getAttempts() < 10;
+	}
+
+	private boolean checkNumber(int number) {
+		if(number == hiddenNumber) {
 			return true;
 		} else {
-			if(player.getNumber() < hiddenNum) {
-				System.out.println("Загаданное число больше чем число " + player.getName());
+			if(number < hiddenNumber) {
+				System.out.println("Загаданное число больше чем число " + number);
 			} else {
-				System.out.println("Загаданное число меньше чем число " + player.getName());
+				System.out.println("Загаданное число меньше чем число " + number);
 			}
 			return false;
 		}
 	}
 
-	private boolean checkAttempts(Player player) {
-		if(player.getAttempts() == 10) {
-			System.out.println("У " + player.getName() + " закончились попытки");
-			return false;
-		} return player.getAttempts() < 10;
+	private void outputWinMessage(Player player) {
+		System.out.println("Игрок " + player.getName() + " угадал число " + hiddenNumber + " с " +
+				(player.getAttempts()) + " попытки");
+		outputEnteredNumbers(player1);
+		outputEnteredNumbers(player2);
 	}
 
 	private void outputEnteredNumbers(Player player) {
@@ -68,22 +84,5 @@ public class GuessNumber {
 			}
 		}
 		System.out.println();
-	}
-
-	private void outputWinMessage(Player player) {
-		System.out.println("Игрок " + player.getName() + " угадал число " + hiddenNum + " с " +
-				(player.getAttempts()) + " попытки");
-		outputEnteredNumbers(player1);
-		outputEnteredNumbers(player2);
-	}
-
-	private boolean isWin(Player player) {
-		inputNumber(player);
-		if(checkAttempts(player)) {
-			if(checkNumber(player)) {
-				outputWinMessage(player);
-				return true;
-			}
-		} return false;
 	}
 }
