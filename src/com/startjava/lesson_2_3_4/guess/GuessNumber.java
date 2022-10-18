@@ -19,18 +19,20 @@ public class GuessNumber {
 		System.out.println("У каждого игрока по 10 попыток");
 		hiddenNumber = 1 + (int) (Math.random() * 100);
 		do {
-			if(isWin(player1) || isWin(player2)) {
+			if(isGuessed(player1) || isGuessed(player2)) {
 				break;
 			}
 			if(loseGame()) {
 				break;
 			}
 		} while(true);
+		outputEnteredNumbers(player1);
+		outputEnteredNumbers(player2);
 		player1.reset();
 		player2.reset();
 	}
 
-	private boolean isWin(Player player) {
+	private boolean isGuessed(Player player) {
 		inputNumber(player);
 		if(checkAttempts(player)) {
 			if(checkNumber(player.getNumber())) {
@@ -39,7 +41,8 @@ public class GuessNumber {
 			}
 		} else {
 			System.out.println("У " + player.getName() + " закончились попытки");
-		} return false;
+		}
+		return false;
 	}
 
 	private void inputNumber(Player player) {
@@ -49,38 +52,31 @@ public class GuessNumber {
 	}
 
 	private boolean checkAttempts(Player player) {
-		if(player.getAttempts() == 10) {
-			return false;
-		} return player.getAttempts() < 10;
+		return player.getAttempts() < 10;
 	}
 
 	private boolean checkNumber(int number) {
 		if(number == hiddenNumber) {
 			return true;
-		} else {
-			if(number < hiddenNumber) {
-				System.out.println("Загаданное число больше чем число " + number);
-			} else {
-				System.out.println("Загаданное число меньше чем число " + number);
-			}
-			return false;
 		}
+		if(number < hiddenNumber) {
+			System.out.println("Загаданное число больше чем число " + number);
+		} else {
+			System.out.println("Загаданное число меньше чем число " + number);
+		}
+		return false;
 	}
 
 	private void outputWinMessage(Player player) {
 		System.out.println("Игрок " + player.getName() + " угадал число " + hiddenNumber + " с " +
 				(player.getAttempts()) + " попытки");
-		outputEnteredNumbers(player1);
-		outputEnteredNumbers(player2);
 	}
 
 	private void outputEnteredNumbers(Player player) {
 		int[] copyNumbers = player.getEnteredNumbers();
 		System.out.println(player.getName() + " назвал цифры:");
 		for(int number : copyNumbers) {
-			if(number != 0) {
-				System.out.print(number + " ");
-			}
+			System.out.print(number + " ");
 		}
 		System.out.println();
 	}
@@ -89,6 +85,7 @@ public class GuessNumber {
 		if(!checkAttempts(player2)) {
 			System.out.println("Увы, вы не смогли угадать число " + hiddenNumber);
 			return true;
-		} return false;
+		}
+		return false;
 	}
 }
