@@ -72,6 +72,14 @@ public class GuessNumber {
 				(player.getAttempts()) + " попытки");
 	}
 
+	private boolean loseGame() {
+		if(!checkAttempts(player2)) {
+			System.out.println("Увы, вы не смогли угадать число " + hiddenNumber);
+			return true;
+		}
+		return false;
+	}
+
 	private void outputEnteredNumbers(Player player) {
 		int[] copyNumbers = player.getEnteredNumbers();
 		System.out.println(player.getName() + " назвал цифры:");
@@ -79,13 +87,5 @@ public class GuessNumber {
 			System.out.print(number + " ");
 		}
 		System.out.println();
-	}
-
-	private boolean loseGame() {
-		if(!checkAttempts(player2)) {
-			System.out.println("Увы, вы не смогли угадать число " + hiddenNumber);
-			return true;
-		}
-		return false;
 	}
 }
