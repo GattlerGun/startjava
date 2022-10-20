@@ -6,6 +6,8 @@ public class Player {
 
 	private final String name;
 	private int attempts;
+	private int numberWins;
+	private final int[] winsRound = new int[3];
 	private final int[] numbers = new int[10];
 
 	public Player(String name) {
@@ -24,12 +26,37 @@ public class Player {
 		this.attempts = attempts;
 	}
 
+	public int getNumberWins() {
+		return numberWins;
+	}
+
+	public void setNumberWins(int numberWins) {
+		this.numberWins = numberWins;
+	}
+
+	public int[] getWinsRound() {
+		return winsRound;
+	}
+
+	public void setWinsRound(int round) {
+		for(int i = 0; i < winsRound.length; i++) {
+			if(winsRound[i] == 0) {
+				winsRound[i] = round;
+				break;
+			}
+		}
+	}
+
 	public int getNumber() {
 		return numbers[attempts - 1];
 	}
 
-	public void addNumber(int number) {
-		numbers[attempts - 1] = number;
+	public boolean addNumber(int number) {
+		if((number > 0) && (number <= 100)) {
+			numbers[attempts] = number;
+			return true;
+		}
+		return false;
 	}
 
 	public int[] getEnteredNumbers() {
