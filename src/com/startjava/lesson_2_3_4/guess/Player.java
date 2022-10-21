@@ -44,6 +44,9 @@ public class Player {
 				winsRound[i] = round;
 				break;
 			}
+			if(round == 0) {
+				winsRound[i] = 0;
+			}
 		}
 	}
 
