@@ -8,14 +8,15 @@ public class GuessNumber {
 	private final Player[] players;
 	private int hiddenNumber;
 	private int round = 1;
-	private final int finalRound = 3;
+	private static final int maxNumberRound = 3;
+	private static final int maxNumberAttempts = 10;
 
 	public GuessNumber(Player... players) {
 		this.players = players;
 	}
 
 	public void start() {
-		drawLots(players);
+		castLots();
 		System.out.println("\nИгра угадай число в интервале (0,100]\n");
 		System.out.println("У каждого игрока по 10 попыток");
 		do {
@@ -25,14 +26,11 @@ public class GuessNumber {
 				if(isGuessed()) {
 					break;
 				}
-				if(outputLoseMessage()) {
-					break;
-				}
-			} while(true);
+			} while(outputLoseMessage());
 			outputEnteredNumbers();
 			reset();
 			round++;
-		} while(round <= finalRound);
+		} while(round <= maxNumberRound);
 		if(checkDraw()) {
 			System.out.println("У вас ничья!");
 			getWinsRound();
@@ -43,14 +41,12 @@ public class GuessNumber {
 		resetRound();
 	}
 
-	private static void drawLots(Player[] players) {
-		int i = players.length - 1;
-		while(i > 1) {
-			int k = (int) (Math.random() * i);
-			Player player = players[k];
-			players[k] = players[i];
+	private void castLots() {
+		for(int i = players.length - 1; i > 1; i--) {
+			int index = (int) (Math.random() * i);
+			Player player = players[index];
+			players[index] = players[i];
 			players[i] = player;
-			i--;
 		}
 	}
 
@@ -73,19 +69,14 @@ public class GuessNumber {
 
 	private void inputNumber(Player player) {
 		System.out.println(player.getName() + " введите ваше число: ");
-		do {
-			if(player.addNumber(scan.nextInt())) {
-				player.setAttempts(player.getAttempts() + 1);
-				break;
-			}
+		while (!player.addNumber(scan.nextInt())) {
 			System.out.println("Введенно число выходит за интервал!! \n" +
 					"Введите число в интервале от 1 до 100: ");
-		} while(true);
+		}
 	}
 
 	private boolean checkAttempts(Player player) {
-		final int finalAttempts = 10;
-		return player.getAttempts() < finalAttempts;
+		return player.getAttempts() < maxNumberAttempts;
 	}
 
 	private boolean compareNumbers(int number) {
@@ -134,7 +125,7 @@ public class GuessNumber {
 				maxNumberWins = players[i];
 			}
 		}
-		System.out.println("По результатам " + finalRound + " раундов победил : " + maxNumberWins.getName());
+		System.out.println("По результатам " + maxNumberRound + " раундов победил : " + maxNumberWins.getName());
 	}
 
 	private boolean checkDraw() {

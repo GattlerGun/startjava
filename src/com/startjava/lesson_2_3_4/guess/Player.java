@@ -22,10 +22,6 @@ public class Player {
 		return attempts;
 	}
 
-	public void setAttempts(int attempts) {
-		this.attempts = attempts;
-	}
-
 	public int getNumberWins() {
 		return numberWins;
 	}
@@ -35,7 +31,7 @@ public class Player {
 	}
 
 	public int[] getWinsRound() {
-		return winsRound;
+		return Arrays.copyOf(winsRound, winsRound.length);
 	}
 
 	public void setWinsRound(int round) {
@@ -57,6 +53,7 @@ public class Player {
 	public boolean addNumber(int number) {
 		if((number > 0) && (number <= 100)) {
 			numbers[attempts] = number;
+			attempts++;
 			return true;
 		}
 		return false;
