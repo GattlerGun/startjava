@@ -8,8 +8,8 @@ public class GuessNumber {
 	private final Player[] players;
 	private int hiddenNumber;
 	private int round = 1;
-	private static final int maxNumberRound = 3;
-	private static final int maxNumberAttempts = 10;
+	private static final int NUMBER_ROUND = 3;
+	private static final int NUMBER_ATTEMPTS = 10;
 
 	public GuessNumber(Player... players) {
 		this.players = players;
@@ -26,11 +26,11 @@ public class GuessNumber {
 				if(isGuessed()) {
 					break;
 				}
-			} while(outputLoseMessage());
+			} while(!outputLoseMessage());
 			outputEnteredNumbers();
 			reset();
 			round++;
-		} while(round <= maxNumberRound);
+		} while(round <= NUMBER_ROUND);
 		if(checkDraw()) {
 			System.out.println("У вас ничья!");
 			getWinsRound();
@@ -76,7 +76,7 @@ public class GuessNumber {
 	}
 
 	private boolean checkAttempts(Player player) {
-		return player.getAttempts() < maxNumberAttempts;
+		return player.getAttempts() < NUMBER_ATTEMPTS;
 	}
 
 	private boolean compareNumbers(int number) {
@@ -125,7 +125,7 @@ public class GuessNumber {
 				maxNumberWins = players[i];
 			}
 		}
-		System.out.println("По результатам " + maxNumberRound + " раундов победил : " + maxNumberWins.getName());
+		System.out.println("По результатам " + NUMBER_ROUND + " раундов победил : " + maxNumberWins.getName());
 	}
 
 	private boolean checkDraw() {
