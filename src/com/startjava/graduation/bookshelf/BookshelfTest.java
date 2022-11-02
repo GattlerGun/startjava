@@ -20,19 +20,30 @@ public class BookshelfTest {
             int userAnswer = Integer.parseInt(scan.nextLine());
             switch (userAnswer) {
                 case 1 -> {
+                    System.out.print("Delete book <title>: ");
                     bookshelf.deleteBook(scan.nextLine());
                     bookshelf.getAllBooks();
                 }
-                case 2 -> bookshelf.clearShelf();
+                case 2 -> {
+                    bookshelf.clearShelf();
+                    System.out.println("Bookshelf cleaning");
+                }
                 case 3 -> {
                     System.out.println("Input pattern: <author> <title> <publishYear>");
                     bookshelf.addBook(new Book(scan.nextLine(), scan.nextLine(), scan.nextLine()));
                     bookshelf.getAllBooks();
                 }
-                case 4 -> bookshelf.findBook(scan.nextLine());
+                case 4 -> {
+                    System.out.print("Find book <title>: ");
+                    bookshelf.findBook(scan.nextLine());
+                }
                 case 5 -> isWork = false;
             }
-            inputEnter();
+            if(isWork) {
+                inputEnter();
+            } else {
+                System.out.print("Quitting...");
+            }
         } while(isWork);
     }
 
