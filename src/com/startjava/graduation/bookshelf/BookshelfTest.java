@@ -6,26 +6,17 @@ public class BookshelfTest {
 
     private static final Scanner scan = new Scanner(System.in);
     private static final Bookshelf bookshelf = new Bookshelf();
-    private static boolean isWork = true;
-    private static int userAnswer;
 
     public static void main(String[] args) {
+        int menuItem;
         do {
-            outputMessage();
+            outputShelfCondition();
             outputMenu();
-            inputPointNumber();
-            if(userAnswer != 4 && userAnswer != 5) {
-                outputBookShelf(bookshelf.getAll());
-            }
-            if(isWork) {
-                inputEnter();
-            } else {
-                System.out.print("Quitting...");
-            }
-        } while(isWork);
+            menuItem = selectMenuItem();
+        } while(menuItem != 5);
     }
 
-    private static void outputMessage() {
+    private static void outputShelfCondition() {
         if(bookshelf.getBookOnShelf() == 0) {
             System.out.println("The bookcase is empty. You can add the first book to it");
         } else {
@@ -45,9 +36,9 @@ public class BookshelfTest {
                     5. Quit""");
     }
 
-    private static void inputPointNumber() {
-        userAnswer = Integer.parseInt(scan.nextLine());
-        switch(userAnswer) {
+    private static int selectMenuItem() {
+        int menuItem = Integer.parseInt(scan.nextLine());
+        switch(menuItem) {
             case 1 -> {
                 System.out.print("Delete book <title>: ");
                 bookshelf.delete(scan.nextLine());
@@ -62,10 +53,19 @@ public class BookshelfTest {
             }
             case 4 -> {
                 System.out.print("Find book <title>: ");
-                System.out.println(bookshelf.find(scan.nextLine()));
+                Book book = bookshelf.find(scan.nextLine());
+                if(book != null) {
+                    System.out.println(book);
+                }
             }
-            case 5 -> isWork = false;
+            case 5 -> System.out.print("Quitting...");
+
         }
+        if(menuItem != 5) {
+            outputBookShelf(bookshelf.getAll());
+            inputEnter();
+        }
+        return menuItem;
     }
 
     private static void outputBookShelf(Book[] books) {

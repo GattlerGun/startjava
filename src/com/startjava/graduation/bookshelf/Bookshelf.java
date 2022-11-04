@@ -17,38 +17,31 @@ public class Bookshelf {
     }
 
     public Book find(String title) {
-        for(int i = 0; i < books.length; i++) {
-            if(books[i] != null) {
-                if(books[i].title().equals(title)) {
-                    return books[i];
-                }
-                if(books[i + 1] == null) {
-                    System.out.println("The book was not found because it is not on the shelf");
-                    break;
-                }
+        for(int i = 0; i < bookOnShelf; i++) {
+            if(books[i].title().equals(title)) {
+                System.out.println("Book on shelf: " + (i + 1));
+                return books[i];
+
             }
         }
+        System.out.println("The book was not found because it is not on the shelf");
         return null;
     }
 
     public void delete(String title) {
-        for(int i = 0; i < books.length; i++) {
+        for(int i = 0; i < bookOnShelf; i++) {
             if(books[i].title().equals(title)) {
-                books[i] = null;
-                System.arraycopy(books, i + 1, books, i, books.length - i - 1);
-                books[books.length - 1] = null;
+                System.arraycopy(books, i + 1, books, i, bookOnShelf - i - 1);
+                books[bookOnShelf - 1] = null;
                 bookOnShelf--;
                 break;
             }
-            if(books[i + 1] == null){
-                System.out.println("The book has not been removed because it is not on the shelf");
-                break;
-            }
         }
+        System.out.println("The book has not been removed because it is not on the shelf");
     }
 
     public Book[] getAll() {
-        return books;
+        return Arrays.copyOf(books, books.length);
     }
 
     public void clearShelf() {
@@ -61,13 +54,7 @@ public class Bookshelf {
     }
 
     public int getEmptyShelf() {
-        int EmptyShelf = 0;
-        for(Book book : books) {
-            if(book == null) {
-                EmptyShelf++;
-            }
-        }
-        return EmptyShelf;
+        return books.length - bookOnShelf;
     }
 
     public int maxLengthShelf() {
