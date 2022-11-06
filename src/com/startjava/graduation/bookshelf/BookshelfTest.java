@@ -8,19 +8,17 @@ public class BookshelfTest {
     private static final Bookshelf bookshelf = new Bookshelf();
 
     public static void main(String[] args) {
-        int menuItem;
         do {
             outputShelfCondition();
             outputMenu();
-            menuItem = selectMenuItem();
-        } while(menuItem != 5);
+        } while(selectMenuItem() != 5);
     }
 
     private static void outputShelfCondition() {
-        if(bookshelf.getBookOnShelf() == 0) {
+        if(bookshelf.getBooksOnShelf() == 0) {
             System.out.println("The bookcase is empty. You can add the first book to it");
         } else {
-            System.out.println("Bookcase contains " + bookshelf.getBookOnShelf() + " books. Free — " +
+            System.out.println("Bookcase contains " + bookshelf.getBooksOnShelf() + " books. Free — " +
                     bookshelf.getEmptyShelf() + " shelves.");
         }
     }
@@ -48,7 +46,11 @@ public class BookshelfTest {
                 System.out.println("Bookshelf cleaning");
             }
             case 3 -> {
-                System.out.println("Input pattern: <author> <title> <publishYear>");
+                System.out.println("""
+                        Input pattern:
+                        <author> (input Enter)
+                        <title> (input Enter)
+                        <publishYear> (input Enter)""");
                 bookshelf.add(new Book(scan.nextLine(), scan.nextLine(), scan.nextLine()));
             }
             case 4 -> {
@@ -61,7 +63,7 @@ public class BookshelfTest {
             case 5 -> System.out.print("Quitting...");
 
         }
-        if(menuItem != 5) {
+        if(menuItem != 5 && menuItem != 4) {
             outputBookShelf(bookshelf.getAll());
             inputEnter();
         }
@@ -69,33 +71,28 @@ public class BookshelfTest {
     }
 
     private static void outputBookShelf(Book[] books) {
-        for(Book book : books) {
-            if(books[0] != null) {
-                if(book != null) {
-                    System.out.print("|" + book);
-                    lengthShelf(book);
-                }
-                if(book == null) {
-                    System.out.print("|");
-                    lengthShelf(null);
-                    break;
-                }
+        if(bookshelf.getBooksOnShelf() != 0) {
+            for(Book book : books) {
+                    if(book != null) {
+                        System.out.print("|" + book);
+                        outputLengthShelf(book);
+                    } else {
+                        System.out.print("|");
+                        outputLengthShelf(null);
+                        break;
+                    }
             }
         }
     }
 
-    private static void lengthShelf(Book book) {
+    private static void outputLengthShelf(Book book) {
         int length = 0;
         if(book != null) {
             length = book.toString().length();
         }
-        for(int i = 0; i < bookshelf.maxLengthShelf() - length; i++) {
-            System.out.print(" ");
-        }
+        System.out.print(" ".repeat(bookshelf.getMaxLengthShelf() - length));
         System.out.print("|\n|");
-        for(int i = 0; i < bookshelf.maxLengthShelf(); i++) {
-            System.out.print("-");
-        }
+        System.out.print("-".repeat(bookshelf.getMaxLengthShelf()));
         System.out.println("|");
     }
 
