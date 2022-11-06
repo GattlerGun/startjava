@@ -71,29 +71,19 @@ public class BookshelfTest {
     }
 
     private static void outputBookShelf(Book[] books) {
-        if(bookshelf.getBooksOnShelf() != 0) {
-            for(Book book : books) {
-                    if(book != null) {
-                        System.out.print("|" + book);
-                        outputLengthShelf(book);
-                    } else {
-                        System.out.print("|");
-                        outputLengthShelf(null);
-                        break;
-                    }
+        if (bookshelf.getBooksOnShelf() != 0) {
+            for (Book book : books) {
+                int length = book.toString().length();
+                System.out.print("|" + book + " ".repeat(bookshelf.getMaxLengthShelf() - length) +
+                        "|\n|" + "-".repeat(bookshelf.getMaxLengthShelf()));
+                System.out.println("|");
+            }
+            if(bookshelf.getEmptyShelf() != 0) {
+                System.out.print("|" + " ".repeat(bookshelf.getMaxLengthShelf()) +
+                        "|\n|" + "-".repeat(bookshelf.getMaxLengthShelf()));
+                System.out.println("|");
             }
         }
-    }
-
-    private static void outputLengthShelf(Book book) {
-        int length = 0;
-        if(book != null) {
-            length = book.toString().length();
-        }
-        System.out.print(" ".repeat(bookshelf.getMaxLengthShelf() - length));
-        System.out.print("|\n|");
-        System.out.print("-".repeat(bookshelf.getMaxLengthShelf()));
-        System.out.println("|");
     }
 
     private static void inputEnter() {
