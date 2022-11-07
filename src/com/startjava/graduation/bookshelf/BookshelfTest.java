@@ -61,9 +61,9 @@ public class BookshelfTest {
                 }
             }
             case 5 -> System.out.print("Quitting...");
-
+            default -> System.out.println("There is no such menu item, enter the correct item!");
         }
-        if(menuItem != 5 && menuItem != 4) {
+        if(menuItem != 4 && menuItem != 5) {
             outputBookShelf(bookshelf.getAll());
             inputEnter();
         }
@@ -71,17 +71,13 @@ public class BookshelfTest {
     }
 
     private static void outputBookShelf(Book[] books) {
+        int maxLength = bookshelf.getMaxLengthShelf();
         if (bookshelf.getBooksOnShelf() != 0) {
             for (Book book : books) {
-                int length = book.toString().length();
-                System.out.print("|" + book + " ".repeat(bookshelf.getMaxLengthShelf() - length) +
-                        "|\n|" + "-".repeat(bookshelf.getMaxLengthShelf()));
-                System.out.println("|");
+                outputShelf(book.toString(), maxLength, book.toString().length());
             }
             if(bookshelf.getEmptyShelf() != 0) {
-                System.out.print("|" + " ".repeat(bookshelf.getMaxLengthShelf()) +
-                        "|\n|" + "-".repeat(bookshelf.getMaxLengthShelf()));
-                System.out.println("|");
+                outputShelf("", maxLength, 0);
             }
         }
     }
@@ -89,5 +85,11 @@ public class BookshelfTest {
     private static void inputEnter() {
         System.out.println("Press Enter to continue working");
         scan.nextLine();
+    }
+
+    private static void outputShelf(String book, int maxLength, int length) {
+        System.out.print("|" + book + " ".repeat(maxLength - length) +
+                "|\n|" + "-".repeat(maxLength));
+        System.out.println("|");
     }
 }

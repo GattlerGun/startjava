@@ -13,13 +13,14 @@ public class Bookshelf {
         if(booksOnShelf < BOOKSHELF_LIMIT) {
             books[booksOnShelf] = book;
             booksOnShelf++;
+            setMaxLengthShelf();
         } else {
             System.out.println("Cannot be added because the shelf ran out of space");
         }
     }
 
     public Book find(String title) {
-        int index = findBook(title);
+        int index = findIndex(title);
         if(index != -1) {
             return books[index];
         }
@@ -28,15 +29,16 @@ public class Bookshelf {
     }
 
     public void delete(String title) {
-        int index = findBook(title);
+        int index = findIndex(title);
         if(index != -1) {
             booksOnShelf--;
-            System.arraycopy(books, index + 1, books, index,
-                    booksOnShelf - index);
-            if(getMaxLengthShelf() == books[index].toString().length()) {
-                maxLengthShelf = 0;
-            }
+            int lengthDeleteBook = books[index].toString().length();
+            System.arraycopy(books, index + 1, books, index, booksOnShelf - index);
             books[booksOnShelf] = null;
+            if(getMaxLengthShelf() == lengthDeleteBook) {
+                maxLengthShelf = 0;
+                setMaxLengthShelf();
+            }
         } else {
             System.out.println("The book has not been removed because it is not on the shelf");
         }
@@ -59,19 +61,21 @@ public class Bookshelf {
         return BOOKSHELF_LIMIT - booksOnShelf;
     }
 
-    public int getMaxLengthShelf() {
+    public void setMaxLengthShelf() {
         if(booksOnShelf != 0) {
-            maxLengthShelf = books[0].toString().length();
-        }
-        for(int i =0; i < booksOnShelf - 1; i++) {
-            if(maxLengthShelf < books[i + 1].toString().length()) {
-                   maxLengthShelf = books[i + 1].toString().length();
+            for(int i = 0; i < booksOnShelf; i++) {
+                if (maxLengthShelf < books[i].toString().length()) {
+                    maxLengthShelf = books[i].toString().length();
+                }
             }
         }
+    }
+
+    public int getMaxLengthShelf() {
         return maxLengthShelf;
     }
 
-    private int findBook(String title) {
+    private int findIndex(String title) {
         for(int i = 0; i < booksOnShelf; i++) {
             if (books[i].title().equals(title)) {
                 return i;
