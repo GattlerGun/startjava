@@ -8,4 +8,8 @@ public record Book(String author, String title, String yearPublish) {
                 title + ", " +
                 yearPublish;
     }
+
+    public int getLength(Book this) {
+        return this.toString().length();
+    }
 }

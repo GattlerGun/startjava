@@ -12,8 +12,12 @@ public class Bookshelf {
     public void add(Book book) {
         if(booksOnShelf < BOOKSHELF_LIMIT) {
             books[booksOnShelf] = book;
-            booksOnShelf++;
-            setMaxLengthShelf();
+            if (maxLengthShelf < books[booksOnShelf].getLength()) {
+                booksOnShelf++;
+                setMaxLengthShelf();
+            } else {
+                booksOnShelf++;
+            }
         } else {
             System.out.println("Cannot be added because the shelf ran out of space");
         }
@@ -32,10 +36,10 @@ public class Bookshelf {
         int index = findIndex(title);
         if(index != -1) {
             booksOnShelf--;
-            int lengthDeleteBook = books[index].toString().length();
+            int lengthDeleteBook = books[index].getLength();
             System.arraycopy(books, index + 1, books, index, booksOnShelf - index);
             books[booksOnShelf] = null;
-            if(getMaxLengthShelf() == lengthDeleteBook) {
+            if(maxLengthShelf == lengthDeleteBook) {
                 maxLengthShelf = 0;
                 setMaxLengthShelf();
             }
@@ -64,8 +68,8 @@ public class Bookshelf {
     public void setMaxLengthShelf() {
         if(booksOnShelf != 0) {
             for(int i = 0; i < booksOnShelf; i++) {
-                if (maxLengthShelf < books[i].toString().length()) {
-                    maxLengthShelf = books[i].toString().length();
+                if (maxLengthShelf < books[i].getLength()) {
+                    maxLengthShelf = books[i].getLength();
                 }
             }
         }

@@ -71,13 +71,12 @@ public class BookshelfTest {
     }
 
     private static void outputBookShelf(Book[] books) {
-        int maxLength = bookshelf.getMaxLengthShelf();
         if (bookshelf.getBooksOnShelf() != 0) {
             for (Book book : books) {
-                outputShelf(book.toString(), maxLength, book.toString().length());
+                outputShelf(book);
             }
             if(bookshelf.getEmptyShelf() != 0) {
-                outputShelf("", maxLength, 0);
+                outputShelf(null);
             }
         }
     }
@@ -87,9 +86,10 @@ public class BookshelfTest {
         scan.nextLine();
     }
 
-    private static void outputShelf(String book, int maxLength, int length) {
-        System.out.print("|" + book + " ".repeat(maxLength - length) +
-                "|\n|" + "-".repeat(maxLength));
+    private static void outputShelf(Book book) {
+        int maxLength = bookshelf.getMaxLengthShelf();
+        System.out.print("|" + (book == null ? "" : book) + " ".repeat(maxLength -
+                (book == null ? 0 : book.getLength())) + "|\n|" + "-".repeat(maxLength));
         System.out.println("|");
     }
 }
